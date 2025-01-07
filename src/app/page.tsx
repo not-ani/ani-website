@@ -4,6 +4,110 @@ import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { ProjectCard } from "@/components/project-card";
 import { LinkPreview } from "@/components/link-preview";
+// Organized Array of Technology Slugs by Categories
+const slugs = [
+  // 1. Programming Languages
+  "typescript",
+  "javascript",
+  "java",
+  "go",
+  "elixir",
+  "swift",
+
+  // 2. Front-End Development
+  "react",
+  "nextdotjs",
+  "flutter",
+  "html5",
+  "css3",
+  "expo",
+
+  // 3. Back-End Development
+  "nodedotjs",
+  "express",
+  "prisma",
+  "drizzle",
+
+  // 4. Mobile Development
+  "android",
+  "androidstudio",
+  "xcode",
+
+  // 5. Databases
+  "postgresql",
+  "mysql",
+
+  // 6. DevOps & Deployment
+  "docker",
+  "amazonaws",
+  "vercel",
+
+  // 7. Version Control & Collaboration
+  "git",
+  "github",
+  "gitlab",
+
+  // 8. Design & Prototyping Tools
+  "figma",
+
+  // 9. Additional Tools
+  "expo",      // Note: Expo appears in both Front-End and Mobile Development
+  "drizzle",   // Note: Drizzle appears in both Back-End and Databases
+  "xcode",     // Note: Xcode appears in both Mobile Development and Additional Tools
+  "ios",
+];
+
+// Hashmap Mapping Slugs to Their Human-Readable Names
+const techNames = {
+  // 1. Programming Languages
+  typescript: "TypeScript",
+  javascript: "JavaScript",
+  java: "Java",
+  go: "Go",
+  elixir: "Elixir",
+  swift: "Swift",
+
+  // 2. Front-End Development
+  react: "React",
+  nextdotjs: "Next.js",
+  flutter: "Flutter",
+  html5: "HTML5",
+  css3: "CSS3",
+  expo: "Expo",
+
+  // 3. Back-End Development
+  nodedotjs: "Node.js",
+  express: "Express",
+  prisma: "Prisma",
+  drizzle: "Drizzle",
+
+  // 4. Mobile Development
+  android: "Android",
+  androidstudio: "Android Studio",
+  xcode: "Xcode",
+
+  // 5. Databases
+  postgresql: "PostgreSQL",
+  mysql: "MySQL",
+
+  // 6. DevOps & Deployment
+  docker: "Docker",
+  amazonaws: "AWS",
+  vercel: "Vercel",
+
+  // 7. Version Control & Collaboration
+  git: "Git",
+  github: "GitHub",
+  gitlab: "GitLab",
+
+  // 8. Design & Prototyping Tools
+  figma: "Figma",
+  ios: "iOS"
+
+};
+const images = slugs.map(
+  (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
+);
 
 export default function Portfolio() {
   return (
@@ -22,13 +126,18 @@ export default function Portfolio() {
           </h1>
           <div className="flex flex-col gap-3 sm:gap-5 pt-2 sm:pt-5">
             <p className="text-[#808080] text-base sm:text-lg">
-              CTO @ amaxaimpact. I love learning, building things, and exploring
-              new technologies
+              <strong>CTO @ amaxa </strong> and <strong>student</strong>. I am passionate about technology, building things, and collaborating to innovate within teams.
+              With a strong background in <strong>software engineering</strong> and <strong>leadership</strong>, I thrive on solving complex problems and optimizing
+              processes to deliver impactful results.
             </p>
             <p className="text-[#808080] text-base sm:text-lg">
-              Passionate about design and enjoy solving problems. With years of
-              experience in product design, I bring creativity and functionality
-              together to create impactful user experiences.
+              I have extensive experience in developing and deploying cutting-edge applications, leveraging modern frameworks and
+              cloud technologies. My expertise spans across full-stack development, system architecture, and cybersecurity.
+              I am dedicated to fostering a collaborative environment where creativity and technical excellence intersect to achieve business goals.
+            </p>
+            <p className="text-[#808080] text-base sm:text-lg">
+              Outside of my professional life, I enjoy mentoring aspiring developers, contributing to open-source projects, and
+              staying up-to-date with the latest industry trends. I believe in continuous learning and am always eager to explore new technologies that can drive positive change.
             </p>
           </div>
         </motion.div>
@@ -40,15 +149,17 @@ export default function Portfolio() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <h2 className="text-xl sm:text-2xl font-bold mb-4">Stack I Use</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-4">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <motion.div
-                key={index}
-                className="bg-[#2C2C2C] rounded-xl h-10 sm:h-12 w-10 sm:w-12"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-              />
-            ))}
+          <div className="h-fill overflow-y-auto">
+            <div className="rounded overflow-hidden">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 divide-x divide-y divide-white/50 border border-white/50 text-xs sm:text-sm">
+                {slugs.map((slug, index) => (
+                  <div key={slug} className="p-2 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2">
+                    <img src={images[index]} alt={techNames[slug]} className="w-5 h-5 sm:w-4 sm:h-4 flex-shrink-0" />
+                    <span className="truncate text-center sm:text-left">{techNames[slug]}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
